@@ -2,6 +2,10 @@ package com.rheez.attendancemanager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,14 +16,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private Fragment fragment;
-    private Fragment homeFragment = new Home();
+    private Fragment homeFragment = new HomeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(( view ->
-            Toast.makeText(getApplication().getBaseContext(), "Feature not implemented yet", Toast.LENGTH_LONG).show()
+                Toast.makeText(getApplication().getBaseContext(), "Feature not implemented yet", Toast.LENGTH_LONG).show()
         ));
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -52,20 +54,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
-        else {
-            if (!fragment.equals(homeFragment)) {
+
+        else if (!fragment.equals(homeFragment)) {
                 FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.replace(R.id.content_frame, homeFragment);
                 ft.commit();
             }
-            else {
-                super.onBackPressed();
-                finishAffinity();
-            }
-        }
+
+        else finish();
     }
 
     @Override
@@ -101,15 +101,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.fragment_timetable)
-            fragment = new Timetable();
+            fragment = new TimetableFragment();
         else if (id == R.id.fragment_go_to_date)
-            fragment = new GoToDate();
+            fragment = new GoToDateFragment();
         else if (id == R.id.fragment_detailed_analysis)
-            fragment = new DetailedAnalysis();
+            fragment = new DetailedAnalysisFragment();
         else if (id == R.id.fragment_overall)
-            fragment = new Overall();
+            fragment = new OverallFragment();
         else if (id == R.id.fragment_predictor)
-            fragment = new Predictor();
+            fragment = new PredictorFragment();
 
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
