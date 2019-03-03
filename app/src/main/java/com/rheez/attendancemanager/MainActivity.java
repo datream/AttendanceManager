@@ -20,25 +20,29 @@ import android.support.v7.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Fragment fragment;
-    private Fragment homeFragment = new HomeFragment();
-
+    private int mDrawerItem;
+    private DrawerLayout drawer;
+    private NavigationView navigationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (savedInstanceState == null)
+        if (savedInstanceState == null) {
+            mDrawerItem = 0;
             displayFragment(new HomeFragment());
+        }
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(( view ->
                 Toast.makeText(getApplication().getBaseContext(), "Feature not implemented yet", Toast.LENGTH_LONG).show()
         ));
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        drawer = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -50,16 +54,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
+        if (drawer.isDrawerOpen(navigationView)) {
+            drawer.closeDrawer(navigationView);
         }
 
-        else if (!fragment.equals(homeFragment))
-                displayFragment(new HomeFragment());
+        else if (mDrawerItem != 0) {
+            mDrawerItem = 0;
+            displayFragment(new HomeFragment());
+        }
 
-        else finish();
+        else super.onBackPressed();
     }
 
     @Override
@@ -92,13 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
+        mDrawerItem = item.getItemId();
 
-        switch (id) {
-            case R.id.home:
-                displayFragment(new HomeFragment());
-                break;
-
+        switch (mDrawerItem) {
             case R.id.fragment_timetable:
                 displayFragment(new TimetableFragment());
                 break;
@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+        drawer.closeDrawer(navigationView);
         return true;
     }
 
