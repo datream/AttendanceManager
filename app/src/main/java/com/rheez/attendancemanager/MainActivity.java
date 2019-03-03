@@ -30,11 +30,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        if (savedInstanceState == null) {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.add(R.id.content_frame, homeFragment);
-            ft.commit();
-        }
+        if (savedInstanceState == null)
+            displayFragment(new HomeFragment());
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(( view ->
@@ -59,11 +56,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         }
 
-        else if (!fragment.equals(homeFragment)) {
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_frame, homeFragment);
-                ft.commit();
-            }
+        else if (!fragment.equals(homeFragment))
+                displayFragment(new HomeFragment());
 
         else finish();
     }
@@ -100,24 +94,43 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.fragment_timetable)
-            fragment = new TimetableFragment();
-        else if (id == R.id.fragment_go_to_date)
-            fragment = new GoToDateFragment();
-        else if (id == R.id.fragment_detailed_analysis)
-            fragment = new DetailedAnalysisFragment();
-        else if (id == R.id.fragment_overall)
-            fragment = new OverallFragment();
-        else if (id == R.id.fragment_predictor)
-            fragment = new PredictorFragment();
+        switch (id) {
+            case R.id.home:
+                displayFragment(new HomeFragment());
+                break;
 
+            case R.id.fragment_timetable:
+                displayFragment(new TimetableFragment());
+                break;
 
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.content_frame, fragment);
-        ft.commit();
+            case R.id.fragment_go_to_date:
+                displayFragment(new GoToDateFragment());
+                break;
+
+            case R.id.fragment_detailed_analysis:
+                displayFragment(new DetailedAnalysisFragment());
+                break;
+
+            case R.id.fragment_overall:
+                displayFragment(new OverallFragment());
+                break;
+
+            case R.id.fragment_predictor:
+                displayFragment(new PredictorFragment());
+                break;
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void displayFragment(@NonNull Fragment navFragment) {
+        supportInvalidateOptionsMenu();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.content_frame, navFragment)
+                .commitNow();
     }
 }
