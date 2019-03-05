@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class AboutActivity extends AppCompatActivity {
@@ -21,6 +22,9 @@ public class AboutActivity extends AppCompatActivity {
 
         setTitle(R.string.about_activity_title);
 
+        String versionName = BuildConfig.VERSION_NAME;
+        TextView appVersion = findViewById(R.id.about_text_version);
+        appVersion.setText(versionName);
 
         LinearLayout license = findViewById(R.id.about_layout_license);
         license.setOnClickListener((View v) -> openURI(GNU_URI));
