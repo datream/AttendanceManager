@@ -20,7 +20,7 @@ import android.support.v7.widget.Toolbar;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private int mDrawerItem;
-    private DrawerLayout drawer;
+    private DrawerLayout mDrawerLayout;
     private NavigationView navigationView;
 
     @Override
@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(getApplication().getBaseContext(), "Feature not implemented yet", Toast.LENGTH_LONG).show()
         ));
 
-        drawer = findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+                this, mDrawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        mDrawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(navigationView)) {
-            drawer.closeDrawer(navigationView);
+        if (mDrawerLayout.isDrawerOpen(navigationView)) {
+            mDrawerLayout.closeDrawer(navigationView);
         }
 
         else if (mDrawerItem != 0) {
@@ -78,18 +78,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        Intent intent = null;
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        else if (id == R.id.action_about) {
-            Intent intent = new Intent(getApplicationContext(), About.class);
-            startActivity(intent);
-            return true;
-        }
+        if (id == R.id.action_settings) {}
+            //intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        else if (id == R.id.action_about)
+            intent = new Intent(getApplicationContext(), AboutActivity.class);
 
+        startActivity(intent);
         return super.onOptionsItemSelected(item);
     }
 
@@ -120,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
 
-        drawer.closeDrawer(navigationView);
+        mDrawerLayout.closeDrawer(navigationView);
         return true;
     }
 
