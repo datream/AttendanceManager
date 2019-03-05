@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="about_activity_title">About</string>
+
+    <string name="about_description">Open source attendance manager for Android</string>
+
+    <!-- Misc -->
+    <string name="about_label_changelog">Changelog</string>
+    <string name="about_label_license">License</string>
+    <string name="about_label_GNU">GNU GPLv3 License</string>
+    <string name="about_label_source">Source code</string>
+    <string name="about_label_version">Version</string>
+    <string name="about_app_version">0.7</string>
+
+
+    <!-- Authors -->
+    <string name="about_title_authors">Authors</string>
+
+    <string name="about_label_developer">Developer</string>
+    <string name="about_label_github" translatable="false">Github</string>
+
+    <string name="about_name_author1" translatable="false">Datream Sailo Tanti</string>
+    <string name="about_name_author2" translatable="false">Parin Shah</string>
+</resources>
