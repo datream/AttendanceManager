@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_list">
+        <item>Set Attendance Criteria</item>
+        <item>Set Subject List</item>
+        <item>Add Past Attendance</item>
+        <item>Backup/Restore Data</item>
+    </string-array>
+</resources>

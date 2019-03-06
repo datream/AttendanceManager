@@ -82,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {}
-            //intent = new Intent(getApplicationContext(), SettingsActivity.class);
+        if (id == R.id.action_settings)
+            intent = new Intent(getApplicationContext(), PreferencesActivity.class);
         else if (id == R.id.action_about)
             intent = new Intent(getApplicationContext(), AboutActivity.class);
 

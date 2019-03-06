@@ -20,7 +20,7 @@ public class AboutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        setTitle(R.string.about_activity_title);
+        setTitle(R.string.action_about);
 
         String versionName = BuildConfig.VERSION_NAME;
         TextView appVersion = findViewById(R.id.about_text_version);
