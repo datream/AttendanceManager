@@ -90,7 +90,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/activity_margin"
                                 android:layout_marginEnd="@dimen/activity_margin_large"
-                                app:srcCompat="@drawable/ic_info_outline_gray"/>
+                                app:srcCompat="@drawable/outline_info_24"/>
 
                         <LinearLayout
                                 android:orientation="vertical"
@@ -132,7 +132,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/activity_margin"
                                 android:layout_marginEnd="@dimen/activity_margin_large"
-                                app:srcCompat="@drawable/ic_copyright_gray"/>
+                                app:srcCompat="@drawable/baseline_copyright_24"/>
 
                         <LinearLayout
                                 android:orientation="vertical"
@@ -173,7 +173,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/activity_margin"
                                 android:layout_marginEnd="@dimen/activity_margin_large"
-                                app:srcCompat="@drawable/ic_history_gray"/>
+                                app:srcCompat="@drawable/baseline_history_24"/>
 
                         <TextView
                                 android:layout_width="wrap_content"
@@ -201,7 +201,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/activity_margin"
                                 android:layout_marginEnd="@dimen/activity_margin_large"
-                                app:srcCompat="@drawable/ic_code_gray"/>
+                                app:srcCompat="@drawable/baseline_code_24"/>
 
                         <TextView
                                 android:layout_width="wrap_content"

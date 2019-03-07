@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:showIn="navigation_view">
+
+    <item
+            android:id="@+id/dialog_attendance_criteria"
+            android:title="Set Attendance Criteria"/>
+    <item
+            android:id="@+id/fragment_add_timetable"
+            android:title="Add Timetable"/>
+    <item
+            android:id="@+id/fragment_add_attendance"
+            android:title="Add Past Attendance"/>
+    <item
+            android:id="@+id/dialog_backup"
+            android:title="Backup nad Restore"/>
+</menu>
