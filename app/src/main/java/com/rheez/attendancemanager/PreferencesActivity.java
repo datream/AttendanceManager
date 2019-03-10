@@ -4,12 +4,16 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+
+import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
 
 public class PreferencesActivity extends AppCompatActivity {
 
@@ -60,7 +64,22 @@ public class PreferencesActivity extends AppCompatActivity {
             popDialog.setTitle("Backup and Restore");
 
         if (id == R.id.dialog_attendance_criteria) {
-            //TODO
+            DiscreteSeekBar seekBar = new DiscreteSeekBar(this);
+            seekBar.setMax(100);
+            popDialog.setView(seekBar);
+
+
+
+            seekBar.setOnProgressChangeListener(new DiscreteSeekBar.OnProgressChangeListener() {
+                @Override
+                public void onProgressChanged(DiscreteSeekBar seekBar, int value, boolean fromUser) {}
+
+                @Override
+                public void onStartTrackingTouch(DiscreteSeekBar seekBar) {}
+
+                @Override
+                public void onStopTrackingTouch(DiscreteSeekBar seekBar) {}
+            });
         }
         else if (id == R.id.dialog_backup) {
             //TODO
@@ -82,5 +101,14 @@ public class PreferencesActivity extends AppCompatActivity {
 
         new Dialog(getApplicationContext());
         popDialog.show();
+    }
+
+    private void displayFragment(@NonNull Fragment navFragment) {
+        supportInvalidateOptionsMenu();
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.content_frame, navFragment)
+                .commitNow();
     }
 }
