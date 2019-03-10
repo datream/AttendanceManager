@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link PredictorFragment} subclass.
  */
 public class PredictorFragment extends Fragment {
 

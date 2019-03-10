@@ -10,7 +10,7 @@ import android.support.v4.app.Fragment;
 
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link TimetableFragment} subclass.
  */
 public class TimetableFragment extends Fragment {
 
