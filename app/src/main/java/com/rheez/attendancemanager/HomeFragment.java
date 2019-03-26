@@ -35,7 +35,6 @@ public class HomeFragment extends Fragment {
         recyclerView= view.findViewById(R.id.rv);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setHasFixedSize(true);
 
         initializeData();
         initializeAdapter();
@@ -45,6 +44,10 @@ public class HomeFragment extends Fragment {
     private void initializeData(){
         subjects = new ArrayList<>();
         subjects.add(new Subject("ADC", 23, 30, 0, 0));
+        subjects.add(new Subject("COA", 20, 30, 0, 0));
+        subjects.add(new Subject("PL2", 25, 30, 0, 0));
+        subjects.add(new Subject("CN", 23, 30, 0, 0));
+        subjects.add(new Subject("PE", 21, 30, 0, 0));
     }
 
     private void initializeAdapter(){
